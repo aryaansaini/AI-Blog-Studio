@@ -1,34 +1,47 @@
-# 🚀 AI Blog Studio
+# 🤖 AI Blog Studio
 
-An AI-powered Blog Management REST API built with **Django REST Framework**. The project provides secure JWT authentication, blog management, categories, search, filtering, and role-based authorization. It is designed using RESTful API principles and follows a scalable backend architecture.
+An AI-powered Blog Management Platform built with **Django REST Framework**, **JWT Authentication**, **MySQL**, and **Google Gemini AI**. Users can securely create, manage, and generate AI-powered blog content through REST APIs.
 
-## ✨ Features
+---
 
-- 🔐 JWT Authentication (Register, Login, Refresh Token)
-- 👤 Custom User Model & Profile API
-- 📝 Blog CRUD Operations
-- 🏷️ Category Management
-- 🔒 Owner-Based Authorization
-- 🔍 Search Blogs by Title & Content
-- 📂 Filter Blogs by Status & Category
-- ↕️ Ordering & Sorting Support
+## 🚀 Features
+
+- 🔐 JWT Authentication (Register/Login/Refresh Token)
+- 👤 Custom User Model & User Profile
+- ✍️ Blog CRUD Operations
+- 🤖 AI Blog Generation using Google Gemini 3.5 Flash
+- 📂 Blog Categories
+- 🔍 Search Blogs
+- 🎯 Filter Blogs by Category & Status
+- 📊 Ordering & Sorting
 - 🖼️ Image Upload Support
-- 🗄️ MySQL Database Integration
-- ⚡ RESTful API using Django REST Framework
-- 🤖 AI Blog Generation (Gemini Integration - In Progress)
+- 🔒 Owner-Based Permissions
+- 🗄️ MySQL Database
+- 🌐 RESTful APIs
 
 ---
 
 ## 🛠️ Tech Stack
 
+### Backend
 - Python 3
-- Django
+- Django 5
 - Django REST Framework
+
+### Database
 - MySQL
-- JWT Authentication (SimpleJWT)
-- Django Filter
-- Google Gemini API (In Progress)
-- Git & GitHub
+
+### Authentication
+- JWT (Simple JWT)
+
+### AI
+- Google Gemini 3.5 Flash
+- Google GenAI SDK
+
+### Other Libraries
+- django-filter
+- Pillow
+- python-decouple
 
 ---
 
@@ -47,13 +60,12 @@ AI-Blog-Studio/
 
 ---
 
-## 🚀 Installation
+## ⚙️ Installation
 
 ### Clone Repository
 
 ```bash
-git clone https://github.com/aryaansaini/AI-Blog-Studio.git
-cd AI-Blog-Studio
+git clone https://github.com/yourusername/AI-Blog-Studio.git
 ```
 
 ### Create Virtual Environment
@@ -61,6 +73,8 @@ cd AI-Blog-Studio
 ```bash
 python -m venv venv
 ```
+
+### Activate Environment
 
 Windows
 
@@ -82,10 +96,12 @@ pip install -r requirements.txt
 
 ### Configure Environment Variables
 
-Create a `.env` file:
+Create a `.env` file.
 
 ```env
 SECRET_KEY=your_secret_key
+
+DEBUG=True
 
 DB_NAME=your_database
 DB_USER=root
@@ -93,13 +109,12 @@ DB_PASSWORD=your_password
 DB_HOST=localhost
 DB_PORT=3306
 
-GEMINI_API_KEY=your_api_key
+GEMINI_API_KEY=your_gemini_api_key
 ```
 
 ### Apply Migrations
 
 ```bash
-python manage.py makemigrations
 python manage.py migrate
 ```
 
@@ -115,63 +130,73 @@ python manage.py runserver
 
 ### Authentication
 
-| Method | Endpoint |
-|---------|----------|
-| POST | `/api/accounts/register/` |
-| POST | `/api/accounts/login/` |
-| POST | `/api/accounts/token/refresh/` |
-| GET | `/api/accounts/profile/` |
+```
+POST /api/accounts/register/
+POST /api/accounts/login/
+POST /api/accounts/token/refresh/
+GET  /api/accounts/profile/
+```
 
 ### Blogs
 
-| Method | Endpoint |
-|---------|----------|
-| POST | `/api/blogs/` |
-| GET | `/api/blogs/all/` |
-| GET | `/api/blogs/<id>/` |
-| PUT | `/api/blogs/<id>/` |
-| DELETE | `/api/blogs/<id>/` |
+```
+POST   /api/blogs/
+GET    /api/blogs/all/
+GET    /api/blogs/<id>/
+PUT    /api/blogs/<id>/
+DELETE /api/blogs/<id>/
+```
 
 ### Categories
 
-| Method | Endpoint |
-|---------|----------|
-| GET | `/api/blogs/categories/` |
-| POST | `/api/blogs/categories/` |
+```
+GET  /api/blogs/categories/
+POST /api/blogs/categories/
+```
 
-### AI Blog Generator
+### AI Blog Generation
 
-| Method | Endpoint |
-|---------|----------|
-| POST | `/api/blogs/generate/` *(In Progress)* |
+```
+POST /api/blogs/generate/
+```
 
----
+Request
 
-## 📸 Current Features
-
-- Secure Authentication
-- REST APIs
-- Blog Management
-- Category Management
-- Search & Filtering
-- Owner Permission
-- MySQL Integration
+```json
+{
+    "topic": "Artificial Intelligence"
+}
+```
 
 ---
 
-## 🔮 Upcoming Features
+## 🔒 Security
 
-- AI Blog Generation
-- Swagger API Documentation
-- Docker Support
-- Deployment (Render/AWS)
-- CI/CD Pipeline
+- JWT Authentication
+- Owner-Based Authorization
+- Protected API Endpoints
+- Secure Environment Variables
+
+---
+
+## 🚀 Future Enhancements
+
+- ❤️ Like & Bookmark Blogs
+- 💬 Comments System
+- 📄 PDF Export
+- 🌍 Multi-language Translation
+- 🤖 AI Blog Summarization
+- 🧠 RAG (Retrieval-Augmented Generation)
+- 📈 Blog Analytics Dashboard
 
 ---
 
 ## 👨‍💻 Author
 
 **Aryan Saini**
+
+Python Backend Developer | Django | REST APIs | AI Integration
+
 
 GitHub: https://github.com/aryaansaini
 

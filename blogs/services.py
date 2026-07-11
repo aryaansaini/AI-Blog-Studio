@@ -1,9 +1,8 @@
-import google.generativeai as genai
+from google import genai
 from django.conf import settings
 
-genai.configure(api_key=settings.GEMINI_API_KEY)
+client = genai.Client(api_key=settings.GEMINI_API_KEY)
 
-model = genai.GenerativeModel("gemini-2.0-flash")
 
 def generate_blog(topic):
     prompt = f"""
@@ -16,5 +15,9 @@ def generate_blog(topic):
     - Conclusion
     """
 
-    response = model.generate_content(prompt)
+    response = client.models.generate_content(
+        model="gemini-3.5-flash",
+        contents=prompt,
+    )
+
     return response.text
