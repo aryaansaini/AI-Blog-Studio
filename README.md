@@ -1,71 +1,99 @@
 # 🤖 AI Blog Studio
 
-An AI-powered Blog Management Platform built with **Django REST Framework**, **JWT Authentication**, **MySQL**, and **Google Gemini AI**. Users can securely create, manage, and generate AI-powered blog content through REST APIs.
+AI Blog Studio is a full-stack Django REST API project that enables users to create, manage, and generate AI-powered blogs using Google's Gemini AI. The application provides secure authentication, blog management, category organization, and intelligent content generation through REST APIs.
 
 ---
 
 ## 🚀 Features
 
-- 🔐 JWT Authentication (Register/Login/Refresh Token)
-- 👤 Custom User Model & User Profile
-- ✍️ Blog CRUD Operations
-- 🤖 AI Blog Generation using Google Gemini 3.5 Flash
-- 📂 Blog Categories
-- 🔍 Search Blogs
-- 🎯 Filter Blogs by Category & Status
-- 📊 Ordering & Sorting
-- 🖼️ Image Upload Support
-- 🔒 Owner-Based Permissions
-- 🗄️ MySQL Database
-- 🌐 RESTful APIs
+### 🔐 Authentication
+- User Registration
+- User Login (JWT Authentication)
+- Refresh Token
+- Protected APIs
+
+### 📝 Blog Management
+- Create Blog
+- Update Blog
+- Delete Blog
+- View Single Blog
+- List All Blogs
+
+### 🤖 AI Blog Generation
+- Generate professional blogs using **Google Gemini 3.5 Flash**
+- Automatic title extraction
+- Automatically saves generated blogs into the database
+- Markdown formatted content
+- Draft status support
+
+### 📂 Categories
+- Create Categories
+- Assign category to blogs
+- Category validation
+- Filter blogs by category
+
+### 🔍 Search & Filtering
+- Search blogs by title
+- Search blogs by content
+- Filter by category
+- Filter by status
+- Ordering by title and creation date
+
+### 🔒 Permissions
+- JWT Protected APIs
+- Only authors can edit or delete their own blogs
 
 ---
 
-## 🛠️ Tech Stack
+# 🛠 Tech Stack
 
 ### Backend
-- Python 3
-- Django 5
+- Python
+- Django
 - Django REST Framework
 
 ### Database
 - MySQL
 
 ### Authentication
-- JWT (Simple JWT)
+- JWT (SimpleJWT)
 
 ### AI
-- Google Gemini 3.5 Flash
-- Google GenAI SDK
+- Google Gemini 3.5 Flash API
 
 ### Other Libraries
 - django-filter
 - Pillow
-- python-decouple
+- python-dotenv
 
 ---
 
-## 📁 Project Structure
+# 📂 Project Structure
 
 ```
 AI-Blog-Studio/
-│── accounts/
-│── blogs/
-│── config/
-│── media/
-│── requirements.txt
-│── manage.py
-│── README.md
+│
+├── accounts/
+├── blogs/
+├── config/
+├── media/
+├── requirements.txt
+├── manage.py
+└── README.md
 ```
 
 ---
 
-## ⚙️ Installation
+# ⚙️ Installation
 
 ### Clone Repository
 
 ```bash
-git clone https://github.com/yourusername/AI-Blog-Studio.git
+git clone https://github.com/aryaansaini/AI-Blog-Studio.git
+```
+
+```bash
+cd AI-Blog-Studio
 ```
 
 ### Create Virtual Environment
@@ -74,7 +102,7 @@ git clone https://github.com/yourusername/AI-Blog-Studio.git
 python -m venv venv
 ```
 
-### Activate Environment
+Activate
 
 Windows
 
@@ -82,13 +110,13 @@ Windows
 venv\Scripts\activate
 ```
 
-Linux / macOS
+Linux / Mac
 
 ```bash
 source venv/bin/activate
 ```
 
-### Install Dependencies
+### Install Requirements
 
 ```bash
 pip install -r requirements.txt
@@ -96,26 +124,40 @@ pip install -r requirements.txt
 
 ### Configure Environment Variables
 
-Create a `.env` file.
+Create a **.env** file
 
 ```env
 SECRET_KEY=your_secret_key
 
 DEBUG=True
 
-DB_NAME=your_database
-DB_USER=root
-DB_PASSWORD=your_password
-DB_HOST=localhost
-DB_PORT=3306
-
 GEMINI_API_KEY=your_gemini_api_key
+
+DB_NAME=your_database
+
+DB_USER=root
+
+DB_PASSWORD=your_password
+
+DB_HOST=localhost
+
+DB_PORT=3306
 ```
 
-### Apply Migrations
+### Run Migrations
+
+```bash
+python manage.py makemigrations
+```
 
 ```bash
 python manage.py migrate
+```
+
+### Create Superuser
+
+```bash
+python manage.py createsuperuser
 ```
 
 ### Run Server
@@ -126,18 +168,17 @@ python manage.py runserver
 
 ---
 
-## 📌 API Endpoints
+# 📡 API Endpoints
 
-### Authentication
+## Authentication
 
 ```
 POST /api/accounts/register/
 POST /api/accounts/login/
 POST /api/accounts/token/refresh/
-GET  /api/accounts/profile/
 ```
 
-### Blogs
+## Blogs
 
 ```
 POST   /api/blogs/
@@ -147,56 +188,91 @@ PUT    /api/blogs/<id>/
 DELETE /api/blogs/<id>/
 ```
 
-### Categories
+## AI
+
+```
+POST /api/blogs/generate/
+```
+
+Example
+
+```json
+{
+    "topic":"Artificial Intelligence",
+    "category":1
+}
+```
+
+## Categories
 
 ```
 GET  /api/blogs/categories/
 POST /api/blogs/categories/
 ```
 
-### AI Blog Generation
+---
 
-```
-POST /api/blogs/generate/
-```
-
-Request
+# 📷 Sample Response
 
 ```json
 {
-    "topic": "Artificial Intelligence"
+    "message":"Blog generated successfully",
+    "id":12,
+    "title":"Artificial Intelligence",
+    "status":"draft"
 }
 ```
 
 ---
 
-## 🔒 Security
+# 🔐 Authentication
+
+All protected APIs require
+
+```
+Authorization: Bearer <access_token>
+```
+
+---
+
+# 📌 Current Features
 
 - JWT Authentication
-- Owner-Based Authorization
-- Protected API Endpoints
-- Secure Environment Variables
+- Blog CRUD
+- AI Blog Generation
+- Category Management
+- Search
+- Filtering
+- Ordering
+- Author Permission
+- Auto Save AI Blogs
+- MySQL Database
+- RESTful APIs
 
 ---
 
-## 🚀 Future Enhancements
+# 🚀 Future Enhancements
 
-- ❤️ Like & Bookmark Blogs
-- 💬 Comments System
-- 📄 PDF Export
-- 🌍 Multi-language Translation
-- 🤖 AI Blog Summarization
-- 🧠 RAG (Retrieval-Augmented Generation)
-- 📈 Blog Analytics Dashboard
+- React Frontend
+- AI Image Generation
+- Blog Slug URLs
+- Reading Time
+- Word Count
+- AI Summary
+- Tags Generation
+- Rich Text Editor
+- Blog Likes & Comments
+- Deployment (Render + Vercel)
 
 ---
 
-## 👨‍💻 Author
+# 👨‍💻 Author
 
 **Aryan Saini**
 
-Python Backend Developer | Django | REST APIs | AI Integration
+Python Backend Developer | Django | Django REST Framework | AI Integration | REST APIs | MySQL | Google Gemini AI
 
+---
 
 GitHub: https://github.com/aryaansaini
 
